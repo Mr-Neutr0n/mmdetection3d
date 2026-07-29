@@ -434,7 +434,8 @@ class Det3DDataPreprocessor(DetDataPreprocessor):
                 res_coors_numpy = res_coors.cpu().numpy()
                 inds, point2voxel_map = self.sparse_quantize(
                     res_coors_numpy, return_index=True, return_inverse=True)
-                point2voxel_map = torch.from_numpy(point2voxel_map).to(res.device)
+                point2voxel_map = torch.from_numpy(point2voxel_map).to(
+                    res.device)
                 if self.training and self.max_voxels is not None:
                     if len(inds) > self.max_voxels:
                         inds = np.random.choice(
